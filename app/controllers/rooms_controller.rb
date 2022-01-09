@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
   def index
     @rooms = Room.all
+    
   end
 
   def new
@@ -10,8 +11,9 @@ class RoomsController < ApplicationController
   
   def create
     @room = Room.new(room_params)
+    binding.pry
     if @room.save
-  
+
       redirect_to :rooms
     else
       render "new"
@@ -20,7 +22,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    bindeig.pry
+    
   end
 
   def edit
