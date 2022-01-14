@@ -14,6 +14,7 @@
       <th>更新日</th>
       <th>作成日</th>
       <th>ルーム画像</th>
+      <th>削除</th>
       <th>登録者id</th>
       </tr>
   </thead>
@@ -21,25 +22,26 @@
   <tbody>
     <% @rooms.each do |room| %> 
         <tr>
-        <td><%= room.roomname %></td>
+      
+        <td><%= link_to room.roomname,room_path(room)%></td>
         <td><%= room.introduction %></td>
         <td><%= room.price %></td>
         <td><%= room.address %></td>    
         <td><%= room.updated_at.to_s(:datetime_jp) %></td>
         <td><%= room.created_at.to_s(:datetime_jp)%></td>
-        
-        <td> <% if room.roomimg? %>  <!-- アップロード画像がある場合に実行する -->
-          <p>
-           
-            <%= image_tag room.roomimg.url %><!--roomインスタンスの画像ファイルのURLを取得し表示 -->
-          </p>
-       <% end %></td>
+        <td><%= link_to room_path(room) do %>
+          <% if room.roomimg? %> 
+            <%= image_tag room.roomimg.url %>
+          <% end %>
+        <% end %></td>
        <td><%= link_to "削除",room, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+       <td><%= room.user_id %></td>
         </tr>    
        <% end %>
-
   </tbody>
 </table>
 
 <p><%= link_to "ルーム新規登録", new_room_path%></p> 
+<p><%= link_to "ホームへ戻る", root_path %></p> 
+
 
