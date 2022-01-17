@@ -15,15 +15,23 @@
     <%= link_to root_path  do%>
       <h1>pote_shere</h1> 
     <% end %>
+
+    
+</div>
       <% if user_signed_in? %>
+        <%= link_to "ルーム新規登録", new_room_path%>
+        <%= link_to "ルーム一覧", rooms_path%>
         <%= link_to 'プロフィール変更', edit_user_registration_path %>
         <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+        <img src=<%= current_user.image %> class = "icon_image" >
         <%= current_user.username %>      
         <% else %>
         <%= link_to '新規登録', new_user_registration_path %>
         <%= link_to 'ログイン', new_user_session_path %>
       <% end %>
-    </nav>
+    
+      </nav>
+
   </header>
  <% if flash[:notice] %>
   <div class="alert alert-primary"  role="alert"><strong><%= notice %></strong></div>

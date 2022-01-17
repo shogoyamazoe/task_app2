@@ -22,14 +22,13 @@
   <tbody>
     <% @rooms.each do |room| %> 
         <tr>
-      
-        <td><%= link_to room.roomname,room_path(room)%></td>
-        <td><%= room.introduction %></td>
-        <td><%= room.price %></td>
-        <td><%= room.address %></td>    
-        <td><%= room.updated_at.to_s(:datetime_jp) %></td>
-        <td><%= room.created_at.to_s(:datetime_jp)%></td>
-        <td><%= link_to room_path(room) do %>
+          <td><%= link_to room.roomname,room_path(room)%></td>
+          <td><%= room.introduction %></td>
+          <td><%= room.price %></td>
+          <td><%= room.address %></td>    
+          <td><%= room.updated_at.to_s(:datetime_jp) %></td>
+          <td><%= room.created_at.to_s(:datetime_jp)%></td>
+          <td><%= link_to room_path(room) do %>
           <% if room.roomimg? %> 
             <%= image_tag room.roomimg.url %>
           <% end %>
@@ -41,7 +40,15 @@
   </tbody>
 </table>
 
-<p><%= link_to "ルーム新規登録", new_room_path%></p> 
+<p><#%= link_to "ルーム新規登録", new_room_path%></p> 
 <p><%= link_to "ホームへ戻る", root_path %></p> 
 
 
+<h1>ユーザー検索</h1>
+<%= search_form_for @q, url: search_rooms_path do |f| %>
+  <#% binding.pry %>
+<%= f.label :roomname_cont, '部屋名' %>
+<%= f.search_field :roomname_cont %>
+<br>
+<%= f.submit '検索' %>
+<% end %>

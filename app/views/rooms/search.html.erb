@@ -1,0 +1,24 @@
+<h1>検索結果</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ルーム名</th>
+      <th>住所</th>
+      <th>料金</th>
+      <th>ルーム画像</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |room| %>
+      <tr>
+        <td><%= room.roomname %></td>
+        <td><%= room.address %></td>
+        <td><%= room.price %></td>
+        <td><%= room.roomimg %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Top', rooms_path %>

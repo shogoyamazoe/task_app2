@@ -5,16 +5,21 @@
     <tr>
         <th><%= @reservation.start_day %></th>
         <th><%= @reservation.end_day %></th>
+        <th><%= @reservation.customer %></th>
         <th><%= @reservation.total_days %></th>
         <th><%= @reservation.total_price %></th>
         <#%= binding.pry %>
         
 
-        <%= form_with model: @reservation, url:reservations_path, method: :post ,local: true do |reservar| %>
-       
-            <%= binding.pry %>
-            <%= reservar.hidden_field :start_day, value: @reservation.start_day %>
-            <%= reservar.hidden_field :total_days, value: @reservation.total_days %>
+        <%= form_with model:@reservation,method: :post ,local: true do |reservar| %>
+          
+            <#%= binding.pry %>
+            <%= reservar.hidden_field :start_day,value: @reservation.start_day %>
+            <%= reservar.hidden_field :end_day,value: @reservation.end_day %>
+            <%= reservar.hidden_field :customer,value: @reservation.customer %>
+            <%= reservar.hidden_field :total_days,value: @reservation.total_days %>
+            <%= reservar.hidden_field :total_price,value: @reservation.total_price %>
+            <%= reservar.hidden_field :room_id,value: @reservation.room_id %>
             <#%= binding.pry %>
           <li><%= reservar.submit "登録完了"%></li>
           <li><%= link_to "ルーム一覧に戻る", rooms_path%></li>

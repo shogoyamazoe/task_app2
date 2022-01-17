@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   root to:'tops#index'
  
  
-  resources :rooms 
+  resources :rooms do
+    collection do
+      get :search
+    end
+  end
+
   resources :reservations , only: [:new, :create, :show] do
     collection do
       post :confirm

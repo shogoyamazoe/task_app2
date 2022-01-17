@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :set_q, only: [:index, :search]
+
   def index
     @rooms = Room.all  
   end
@@ -10,7 +12,6 @@ class RoomsController < ApplicationController
   
   def create
     @room = Room.new(room_params)
-    #binding.pry
     @room.user_id = current_user.id  
     if @room.save
       redirect_to rooms_path
@@ -24,6 +25,7 @@ class RoomsController < ApplicationController
     @user = current_user
     @room.user_id = current_user.id
     @postuser = @room.user
+    @reservation = Reservation.new
     
   end
 
@@ -40,11 +42,18 @@ class RoomsController < ApplicationController
     redirect_to :rooms
   end
 
+  def search
+    @results = @q.result
+    binding.pry
+  end
+ 
   private
   def room_params
     params.require(:room).permit(:roomname, :introduction, :price, :address, :roomimg, :user_id, :room_id) # 変更後
   end
 
-  
+  def set_q
+    @q = Room.ransack(params[:q])
+  end
 
 end
