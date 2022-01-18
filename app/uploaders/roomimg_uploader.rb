@@ -44,9 +44,9 @@ class RoomimgUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-  process resize_to_fit: [300, 500]
-
-  version :thumb do
-    process resize_to_fill: [200,200]
-  end
+  process resize_to_fit: [300, 200]
+  #process resize_to_limit: [300, 200, "#ffffff", "Center"]
+  # version :thumb do
+  #   process resize_to_fill: [200,200]
+  # end
 end

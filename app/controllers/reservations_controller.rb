@@ -2,9 +2,8 @@ class ReservationsController < ApplicationController
   
   def index
     @user = current_user
-    @rooms = @user.rooms
-    @reservation = @user.reservations
-    @reservations.roomname = @reservation.room.roomname
+    @reservations = @user.reservations   
+    #@reservations.roomname = @reservation.room.roomname
   end
   
   def new

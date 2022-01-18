@@ -1,20 +1,39 @@
-<tbody>
-    <% @rooms.each do |room| %> 
-        <tr>
-          <td><%= link_to room.roomname,room_path(room)%></td>
-          <td><%= room.introduction %></td>
-          <td><%= room.price %></td>
-          <td><%= room.address %></td>    
-          <td><%= room.updated_at.to_s(:datetime_jp) %></td>
-          <td><%= room.created_at.to_s(:datetime_jp)%></td>
-          <td><%= link_to room_path(room) do %>
-          <% if room.roomimg? %> 
-            <%= image_tag room.roomimg.url %>
-          <% end %>
-        <% end %></td>
-       <td><%= link_to "削除",room, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
-       <td><%= room.user_id %></td>
-        </tr>    
-       <% end %>
-  </tbody>
-</table>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      
+        <table>
+          <thead>
+            <tr>
+              <th class="border-bottom" >ルーム名</th>
+              <th class="border-bottom" >一言</th>
+              <th class="border-bottom" >住所</th>
+              <th class="border-bottom" >料金</th>
+              <th class="border-bottom" >ルーム登録日</th>
+              <th class="border-bottom" >ルーム画像</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <% @rooms.each do |room| %> 
+              <tr>
+                <td class="border-bottom"><%= link_to room.roomname,room_path(room)%></td>
+                <td class="border-bottom"><%= room.introduction %></td>
+                <td class="border-bottom"><%= room.price %></td>
+                <td class="border-bottom"><%= room.address %></td>    
+                <td class="border-bottom"><%= room.created_at.to_s(:datetime_jp)%></td> 
+                <td class="border-bottom"><%= link_to room_path(room) do %>
+                  <% if room.roomimg? %> 
+                    <%= image_tag room.roomimg.url %>
+                  <% end %>
+                <% end %></td>
+                <td class="border-bottom"><%= link_to "削除",room, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+                <tdclass="border-bottom"><%= room.user_id %></td>
+              </tr>    
+            <% end %>
+          </tbody>
+        </table>
+      
+    </div>
+  </div>
+</div>

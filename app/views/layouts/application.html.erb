@@ -18,29 +18,29 @@
       <% end %>
    
       <%= search_form_for @search, url: search_rooms_path do |f| %>
-        <%= f.search_field :address_cont,class:"form-control", placeholder:'エリア検索' %>
+        <%= f.search_field :address_cont,class:"form-control", placeholder:'エリア' %>
       <% end %>
 
       <%= search_form_for @search, url: search_rooms_path do |f| %>
-        <%=f.search_field:roomname_or_address_or_price_cont,class:"form-control", placeholder: "キーワード検索"%>
+        <%=f.search_field:roomname_or_address_or_price_cont,class:"form-control", placeholder: "キーワード"%>
       <% end %>
         <% if user_signed_in? %>
           <div class="collapse navbar-collapse" id="Navber">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <%= link_to "ルーム新規登録", new_room_path%>
+                <%= link_to "ルーム登録", new_room_path , class: "nav-link"%>
               </li>
               <li class="nav-item">
-                <%= link_to "登録ルーム一覧",  postuser_rooms_path%>
+                <%= link_to "登録ルーム一覧",  postuser_rooms_path , class: "nav-link"%>
               </li> 
               <li class="nav-item">
-                <%= link_to "予約ルーム一覧", reservations_path%>
+                <%= link_to "予約ルーム一覧", reservations_path , class: "nav-link"%>
               </li>
               <li class="nav-item">
-                <%= link_to 'プロフィール変更', edit_user_registration_path %>
+                <%= link_to 'プロフィール変更', edit_user_registration_path , class: "nav-link"%>
               </li>
               <li class="nav-item">
-                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete , class: "nav-link"%>
               </li>
               <li>
               <%= current_user.username %>      
@@ -51,10 +51,10 @@
           <div class="collapse navbar-collapse" id="Navber">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <%= link_to '新規登録', new_user_registration_path %>
+                <%= link_to '新規登録', new_user_registration_path , class: "nav-link"%>
               </li>
               <li class="nav-item">
-                <%= link_to 'ログイン', new_user_session_path %>
+                <%= link_to 'ログイン', new_user_session_path , class: "nav-link"%>
               </li>
             </ul>
           </div>
