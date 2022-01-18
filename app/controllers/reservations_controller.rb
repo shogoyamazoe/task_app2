@@ -1,5 +1,10 @@
 class ReservationsController < ApplicationController
+  
   def index
+    @user = current_user
+    @rooms = @user.rooms
+    @reservation = @user.reservations
+    @reservations.roomname = @reservation.room.roomname
   end
   
   def new
@@ -9,17 +14,13 @@ class ReservationsController < ApplicationController
 
     
   end
-
-  def show
-  end
-  
   
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.user_id = current_user.id
     @reservation.room_id = @reservation.room.id
-    if @reservation.save!
-      redirect_to rooms_path
+    if @reservation.save
+      redirect_to reservations_path
     else
       render :new   
      end

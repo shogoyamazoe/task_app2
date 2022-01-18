@@ -1,25 +1,4 @@
-<h3>ルーム情報一覧</h3>
-
-<% if flash[:notice] %>
-<p class ="notice"><%= flash[:notice] %></p>
-<% end %>
-
-<table>
-  <thead>
-      <tr>
-      <th>ルーム名</th>
-      <th>一言</th>
-      <th>料金</th>
-      <th>住所</th>
-      <th>更新日</th>
-      <th>作成日</th>
-      <th>ルーム画像</th>
-      <th>削除</th>
-      <th>登録者id</th>
-      </tr>
-  </thead>
-
-  <tbody>
+<tbody>
     <% @rooms.each do |room| %> 
         <tr>
           <td><%= link_to room.roomname,room_path(room)%></td>
@@ -39,8 +18,3 @@
        <% end %>
   </tbody>
 </table>
-
-
-<p><%= link_to "ホームへ戻る", root_path %></p> 
-
-

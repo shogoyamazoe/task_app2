@@ -11,26 +11,55 @@
 
   <body>
   <header>
-    <nav>
-    <%= link_to root_path  do%>
-      <h1>pote_shere</h1> 
-    <% end %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    
-</div>
-      <% if user_signed_in? %>
-        <%= link_to "ルーム新規登録", new_room_path%>
-        <%= link_to "ルーム一覧", rooms_path%>
-        <%= link_to 'プロフィール変更', edit_user_registration_path %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-        <img src=<%= current_user.image %> class = "icon_image" >
-        <%= current_user.username %>      
-        <% else %>
-        <%= link_to '新規登録', new_user_registration_path %>
-        <%= link_to 'ログイン', new_user_session_path %>
+      <%= link_to root_path   do%>
+        <h1>pote_shere</h1> 
       <% end %>
-    
-      </nav>
+   
+      <%= search_form_for @search, url: search_rooms_path do |f| %>
+        <%= f.search_field :address_cont,class:"form-control", placeholder:'エリア検索' %>
+      <% end %>
+
+      <%= search_form_for @search, url: search_rooms_path do |f| %>
+        <%=f.search_field:roomname_or_address_or_price_cont,class:"form-control", placeholder: "キーワード検索"%>
+      <% end %>
+        <% if user_signed_in? %>
+          <div class="collapse navbar-collapse" id="Navber">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <%= link_to "ルーム新規登録", new_room_path%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "登録ルーム一覧",  postuser_rooms_path%>
+              </li> 
+              <li class="nav-item">
+                <%= link_to "予約ルーム一覧", reservations_path%>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'プロフィール変更', edit_user_registration_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+              </li>
+              <li>
+              <%= current_user.username %>      
+                <img src=<%= current_user.image %> class = "icon_image" >
+              </li>         
+          </div>
+        <% else %>
+          <div class="collapse navbar-collapse" id="Navber">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <%= link_to '新規登録', new_user_registration_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ログイン', new_user_session_path %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+    </nav>
 
   </header>
  <% if flash[:notice] %>
@@ -41,5 +70,10 @@
   <div class="alert alert-danger"  role="alert"><strong><%= alert %></strong></div>
  <% end %>
   <%= yield %>
-</body>
+  </body>
+  
+  <footer>
+    <h5>poteoan</h5>
+  </footer>
+
 </html>

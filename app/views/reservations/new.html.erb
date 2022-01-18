@@ -20,7 +20,7 @@
             <%= reservar.hidden_field :total_days,value: @reservation.total_days %>
             <%= reservar.hidden_field :total_price,value: @reservation.total_price %>
             <%= reservar.hidden_field :room_id,value: @reservation.room_id %>
-            <#%= binding.pry %>
+           
           <li><%= reservar.submit "登録完了"%></li>
           <li><%= link_to "ルーム一覧に戻る", rooms_path%></li>
         </ul>

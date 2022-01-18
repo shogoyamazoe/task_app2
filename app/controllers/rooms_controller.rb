@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
-  before_action :set_q, only: [:index, :search]
+  
+  before_action :authenticate_user!, except: [:search]
 
   def index
     @rooms = Room.all  
@@ -22,18 +23,14 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    if user_signed_in?
     @user = current_user
     @room.user_id = current_user.id
+    end
     @postuser = @room.user
-    @reservation = Reservation.new
-    
+    @reservation = Reservation.new    
   end
 
-  def edit
-  end
-
-  def update
-  end
 
   def destroy
     @room = Room.find(params[:id])
@@ -41,19 +38,14 @@ class RoomsController < ApplicationController
     flash[:notice] = "ユーザーを削除しました"
     redirect_to :rooms
   end
-
-  def search
-    @results = @q.result
-    binding.pry
-  end
  
+  def postuser
+   @user = current_user
+   @rooms = @user.rooms
+  end
+  
   private
   def room_params
-    params.require(:room).permit(:roomname, :introduction, :price, :address, :roomimg, :user_id, :room_id) # 変更後
+    params.require(:room).permit(:roomname, :introduction, :price, :address, :roomimg, :user_id, :room_id) 
   end
-
-  def set_q
-    @q = Room.ransack(params[:q])
-  end
-
 end

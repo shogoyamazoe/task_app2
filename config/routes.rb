@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   resources :rooms do
     collection do
       get :search
+      get :postuser
     end
   end
 
-  resources :reservations , only: [:new, :create, :show] do
+  resources :reservations , only: [:index, :new, :create, :show] do
     collection do
       post :confirm
     end

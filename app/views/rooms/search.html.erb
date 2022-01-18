@@ -1,4 +1,4 @@
-<h1>検索結果</h1>
+<h1>検索結果:<%= @rooms.count %></h1>
 <table>
   <thead>
     <tr>
@@ -10,13 +10,18 @@
   </thead>
 
   <tbody>
-    <% @results.each do |room| %>
+    <%  @rooms .each do |room| %>
       <tr>
-        <td><%= room.roomname %></td>
-        <td><%= room.address %></td>
-        <td><%= room.price %></td>
-        <td><%= room.roomimg %></td>
-      </tr>
+      <td><%= link_to room.roomname,room_path(room)%></td>
+      <td><%= link_to room.address,room_path(room)%></td>
+      <td><%= link_to room.price,room_path(room)%></td>
+      <td><%= link_to room_path(room) do %>
+    <% if room.roomimg? %> 
+      <%= image_tag room.roomimg.url %>
+      <% end %>
+      <% end %></td>
+  
+  </tr>
     <% end %>
   </tbody>
 </table>
