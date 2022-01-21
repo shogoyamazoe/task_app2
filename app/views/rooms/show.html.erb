@@ -1,55 +1,47 @@
 <h3>ルーム詳細</h3>
- 
+<div class="container">
+  <div class="row">
+   <div class="col-md-6">
 <table>
   <tr>
-    <th>ルーム名</th>
-    <td><%= @room.roomname %></td>
+  <td><% if @room.roomimg? %> 
+    <%= image_tag @room.roomimg.url %>
+  <% end %></td>
   </tr>
   <tr>
-    <th>一言紹介</th>
+  <td><img src=<%= @room.user.image %> class = "icon_image" ></td>
+  </tr>
+  <tr>
+  <td class="border-bottom" ><%= @room.roomname %></td><br>
+  <td class="border-bottom" ><%= @room.address %></td>
+  </tr>
+  <tr>
     <td><%= @room.introduction %></td>
   </tr>
-  <tr>
-    <th>料金</th>
-    <td><%= @room.price %></td>
-  </tr>
-  <tr>
-    <th>住所</th>
-    <td><%= @room.address %></td>
-    
-  </tr>
-  <tr>
-    <th>ルーム画像</th>
-    <% if @room.roomimg? %> 
-    <%= image_tag @room.roomimg.url %>
-  <% end %>
-  
+   
   </tr>
 </table>
-
-<div>
-  <ul>
-    <li><%= link_to "ルーム一覧に戻る", rooms_path %></li>
-  </ul>
 </div>
 
+<div class="col-md-6">
 
+<p><%= "1日あたり  ¥#{@room.price} / 日" %></p><br>
 <%= form_with model: @reservation, url:new_reservation_path, method: :get ,local: true do |reserv| %>
-
-  <p><%= "¥#{@room.price} / 日" %></p><br>
-
-  <%= reserv.label :start_day ,"開始日" %><br>
-  <%= reserv.date_field :start_day  %><br>
-  <%= reserv.label :end_day ,"終了日" %><br>
-  <%= reserv.date_field :end_day %><br>
-  <%= reserv.label :customer,"人数" %><br>
-  <%= reserv.number_field :customer, min: 1  %><br>
+  <div class="form-group">
+  <%= reserv.label :start_day ,"開始日"  %><span class="badge badge-danger">必須</span><br>
+  <%= reserv.date_field :start_day , class: "form-control" %><br>
+  <%= reserv.label :end_day ,"終了日" %><span class="badge badge-danger">必須</span><br>
+  <%= reserv.date_field :end_day , class: "form-control"%><br>
+  <%= reserv.label :customer,"人数" %><span class="badge badge-danger">必須</span><br>
+  <%= reserv.number_field :customer, min: 1 , class: "form-control" %><br>
   <%= reserv.hidden_field :room_id, value: @room.id %>
   <%= reserv.hidden_field :user_id, value: current_user.id %>
 
-  <ul>
-    <li><%= reserv.submit "予約を確認する" %></li>
-    
-    <li><%= link_to "戻る", rooms_path %></li>
-  </ul>
+  <p><%= reserv.submit "予約を確認する" ,class: "btn btn-primary"%></p>
+
+  <%= link_to "ホームへ戻る", root_path ,class: "btn btn-warning"%>
+  
 <% end %>
+</div>
+</div>
+</div>

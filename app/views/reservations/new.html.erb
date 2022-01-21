@@ -1,29 +1,54 @@
 <h1>予約内容確認</h1>
 
-< 開始日>
-  <table>
-    <tr>
-        <th><%= @reservation.start_day %></th>
-        <th><%= @reservation.end_day %></th>
-        <th><%= @reservation.customer %></th>
-        <th><%= @reservation.total_days %></th>
-        <th><%= @reservation.total_price %></th>
-        <#%= binding.pry %>
-        
-
-        <%= form_with model:@reservation,method: :post ,local: true do |reservar| %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-30 mx-auto">
+    <h5>この内容で予約しますがよろしいですか？</h5>
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">予約開始日</th>
+            <th scope="col">予約終了日</th>
+            <th scope="col">予約人数</th>
+            <th scope="col">使用日数</th>
+            <th scope="col">合計金額</th>
+            
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td><%= @reservation.start_day %></td>
+          <td><%= @reservation.end_day%></td>
+          <td><%= @reservation.customer%>人</td>
+          <td><%= @reservation.total_days%>日</td>        
+          <td>¥<%= @reservation.total_price %></td>
+          </tr>
+          </div>
+          </div>
+      </table>
+          <%= form_with model:@reservation,method: :post ,local: true do |reservar| %>
+          <p><%= reservar.submit "登録完了",class: "btn btn-primary"%></p>
+     
           
-            <#%= binding.pry %>
-            <%= reservar.hidden_field :start_day,value: @reservation.start_day %>
-            <%= reservar.hidden_field :end_day,value: @reservation.end_day %>
-            <%= reservar.hidden_field :customer,value: @reservation.customer %>
-            <%= reservar.hidden_field :total_days,value: @reservation.total_days %>
-            <%= reservar.hidden_field :total_price,value: @reservation.total_price %>
-            <%= reservar.hidden_field :room_id,value: @reservation.room_id %>
-           
-          <li><%= reservar.submit "登録完了"%></li>
-          <li><%= link_to "ルーム一覧に戻る", rooms_path%></li>
-        </ul>
+              <%= reservar.hidden_field :start_day,value: @reservation.start_day %>
+              <%= reservar.hidden_field :end_day,value: @reservation.end_day %>
+              <%= reservar.hidden_field :customer,value: @reservation.customer %>
+              <%= reservar.hidden_field :total_days,value: @reservation.total_days %>
+              <%= reservar.hidden_field :total_price,value: @reservation.total_price %>
+              <%= reservar.hidden_field :room_id,value: @reservation.room_id %>
+          <% end %>
+
+          <%= form_with model: @reservation, url:back_reservations_path, method: :get ,local: true do |reservar| %>
+          <p><%= reservar.submit "詳細へ戻る",class: "btn btn-primary"%></p>
+         
+          
+              <%= reservar.hidden_field :start_day,value: @reservation.start_day %>
+              <%= reservar.hidden_field :end_day,value: @reservation.end_day %>
+              <%= reservar.hidden_field :customer,value: @reservation.customer %>
+              <%= reservar.hidden_field :total_days,value: @reservation.total_days %>
+              <%= reservar.hidden_field :total_price,value: @reservation.total_price %>
+              <%= reservar.hidden_field :room_id,value: @reservation.room_id %>
+             
       <% end %>
-    </tr>
-  </table>
+    
+      <p><%= link_to "ホームへ戻る", root_path,class: "btn btn-primary"%></p>

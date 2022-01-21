@@ -1,45 +1,52 @@
-<h3>ルーム登録</h3>
 
-<#%= render "shared/error",obj: @room %>
+<%#= render "shared/error",obj: @room %>
 
 <% if flash.now[:notice] %>
-  <p class ="notice"><%= flash.now[:notice] %></p>
+<p class ="notice"><%= flash.now[:notice] %></p>
 <% end %>
-
-<%= form_with model: @room,local: true do |f| %>
-  <table>
-    <tr>
-      <th><%= f.label :roomname ,"ルーム名" %></th> 
-      <td><%= f.text_field :roomname %></td>
-    </tr>
-
-    <tr>
-      <th><%= f.label :introduction ,"一言" %></th>
-      <td><%= f.text_area :introduction %></td>    
-    </tr>
-
-    <tr>
-      <th><%= f.label :price ,"料金" %></th>
-      <td><%= f.number_field :price %></td>
-    </tr>
-
-    <tr>
-      <th><%= f.label :address ,"住所" %></th>
-      <td><%= f.text_field :address %>     
-    </tr>
-      
-    <tr>
-      <th><%= f.label :roomimg ,"部屋写真" %></th>
-      <td><%= f.file_field:roomimg %>        
-    </tr>
-    <tr>
-  
-  </table>
-
-  <div>
-    <ul>
-      <li><%= f.submit "登録完了"%></li>
-      <li><%= link_to "ルーム一覧に戻る", rooms_path %></li>
-    </ul>
+<div class="container mt-5">
+  <h3>ルーム情報登録</h3>
+  <div class="row">
+    <div class="col-50 mx-auto">
+      <table class="thead-dark">
+        <%= form_with model: @room,local: true do |f| %>
+          <tr>
+            <div class="form-group">
+              <th ><%= f.label :roomname ,"ルーム名" %><span class="badge badge-danger">必須</span></th> 
+              <td ><%= f.text_field :roomname , class: "form-control"%></td>
+            </div>
+          </tr>
+          <tr>
+            <div class="form-group">
+              <th ><%= f.label :introduction ,"ルーム紹介" %><span class="badge badge-danger">必須</span></th>
+              <td ><%= f.text_area :introduction, class: "form-control"%></td>   
+            </div> 
+          </tr>
+          <tr>
+            <div class="form-group">
+              <th ><%= f.label :price ,"料金" %><span class="badge badge-danger">必須</span></th>
+              <td c><%= f.number_field :price, class: "form-control" %></td>
+            </div>
+          </tr>
+          <tr>
+            <div class="form-group">
+              <th ><%= f.label :address ,"住所" %><span class="badge badge-danger">必須</span></th>
+              <td ><%= f.text_field :address, class: "form-control"%></td>
+            </div>
+          </tr>     
+          <tr>
+          
+            <div class="form-group">
+              <th class="border-bottom"><%= f.label :roomimg ,"部屋写真" %><span class="badge badge-danger">必須</span></th>
+              <td class="border-bottom"><%= f.file_field:roomimg %> </td>     
+            </div>  
+             
+          </tr>
+          </table>
+            <p class = "mt-3"><%= f.submit "登録完了" ,class: "btn btn-primary"%></p>
+            <%= link_to "ホームへ戻る", root_path ,class: "btn btn-warning"%>
+          <% end %>
+    </div>
   </div>
-<% end %>
+  </div>
+  

@@ -3,14 +3,19 @@ class ReservationsController < ApplicationController
   def index
     @user = current_user
     @reservations = @user.reservations   
-    #@reservations.roomname = @reservation.room.roomname
+    @reservations = Reservation.all  
   end
   
   def new
     @reservation = Reservation.new(reservation_params)
-    @reservation.total_days = @reservation.total_yoyaku 
+    @room = Room.find(params[:reservation][:room_id])
+    if @reservation.end_day.nil?
+      render 'rooms/show'
+    else
+      @reservation.total_days = @reservation.total_yoyaku 
     @reservation.total_price = @reservation.total_kakaku
-
+    end
+    
     
   end
   
@@ -25,7 +30,10 @@ class ReservationsController < ApplicationController
      end
   end
 
- 
+ def back
+  @back = Room.find(params[:reservation][:room_id])
+  redirect_to room_path(@back)
+ end
  
   
   private

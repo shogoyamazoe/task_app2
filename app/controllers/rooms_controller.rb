@@ -15,20 +15,22 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.user_id = current_user.id  
     if @room.save
-      redirect_to rooms_path
+      redirect_to room_path(@room)
     else
       render "new"
     end
   end
 
   def show
+    
     @room = Room.find(params[:id])
-    if user_signed_in?
+    #if user_signed_in?
     @user = current_user
-    @room.user_id = current_user.id
-    end
-    @postuser = @room.user
-    @reservation = Reservation.new    
+    #@room.user_id = current_user.id
+    #end
+    @postuser = @user.rooms
+    @reservation = Reservation.new  
+   
   end
 
 

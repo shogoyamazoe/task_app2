@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',  
+    sessions: 'users/sessions'
+  }
     devise_scope :user do
       get '/users/sign_out' => 'devise/sessions#destroy'
     end
@@ -16,11 +20,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reservations , only: [:index, :new, :create, :show] do
+  resources :reservations  do
     collection do
-      post :confirm
+      get :back
     end
   end
+
+
  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

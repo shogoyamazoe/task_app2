@@ -1,46 +1,44 @@
 <h3>ルーム情報一覧</h3>
 
-<% if flash[:notice] %>
-<p class ="notice"><%= flash[:notice] %></p>
-<% end %>
+  <% if flash[:notice] %>
+    <p class ="notice"><%= flash[:notice] %></p>
+  <% end %>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-auto mx-5">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+                <th scope="col">ルーム名</th>
+                <th scope="col">一言</th>
+                <th scope="col">料金</th>
+                <th scope="col">住所</th>
+                <th scope="col">更新日</th>
+                <th scope="col">作成日</th>
+                <th scope="col">ルーム画像</th>
+              </tr>
+            </thead>
 
-<table>
-  <thead>
-      <tr>
-      <th>ルーム名</th>
-      <th>一言</th>
-      <th>料金</th>
-      <th>住所</th>
-      <th>更新日</th>
-      <th>作成日</th>
-      <th>ルーム画像</th>
-      <th>削除</th>
-      <th>登録者id</th>
-      </tr>
-  </thead>
-
-  <tbody>
-    <% @rooms.each do |room| %> 
-        <tr>
-          <td><%= link_to room.roomname,room_path(room)%></td>
-          <td><%= room.introduction %></td>
-          <td><%= room.price %></td>
-          <td><%= room.address %></td>    
-          <td><%= room.updated_at.to_s(:datetime_jp) %></td>
-          <td><%= room.created_at.to_s(:datetime_jp)%></td>
-          <td><%= link_to room_path(room) do %>
-          <% if room.roomimg? %> 
-            <%= image_tag room.roomimg.url %>
-          <% end %>
-        <% end %></td>
-       <td><%= link_to "削除",room, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
-       <td><%= room.user_id %></td>
-        </tr>    
-       <% end %>
-  </tbody>
-</table>
-
-
-<p><%= link_to "ホームへ戻る", root_path %></p> 
-
+              <tbody>
+                <% @rooms.each do |room| %> 
+                  <tr>
+                    <td scope="col"><%= link_to room.roomname,room_path(room)%></td>
+                    <td scope="col"><%= room.introduction %></td>
+                    <td scope="col"><%= room.price %></td>
+                    <td scope="col"><%= room.address %></td>    
+                    <td scope="col"><%= room.updated_at.to_s(:datetime_jp) %></td>
+                    <td scope="col"><%= room.created_at.to_s(:datetime_jp)%></td>
+                    <td scope="col"><%= link_to room_path(room) do %>
+                      <% if room.roomimg? %> 
+                        <%= image_tag room.roomimg.url %>
+                      <% end %>
+                      <% end %></td>
+                 </tr>    
+                <% end %>
+              </tbody>
+          </table>
+        <p><%= link_to "ホームへ戻る", root_path %></p> 
+      </div>
+    </div>
+  </div>
 

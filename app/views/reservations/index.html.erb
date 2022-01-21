@@ -1,6 +1,8 @@
+
+<h3>予約ルーム一覧</h3>
 <div class="container mt-5">
   <div class="row">
-    <div class="col-auto mx-5">
+    <div class="col-30 mx-auto">
       <table class="table table-hover">
         <thead class="thead-dark">
           <tr>
@@ -17,8 +19,12 @@
           <% @reservations.each do |reser| %>
             
             <tr>
-              <td><%= image_tag reser.room.roomimg.url %></td>
-              <td><%= reser.room.roomname%></td>
+            <td><%= link_to room_path(reser.room_id) do %>
+              <% if reser.room.roomimg? %> 
+              <%= image_tag reser.room.roomimg.url %>
+              <% end %>
+              <% end %></td>
+              <td><%= link_to reser.room.roomname,room_path(reser.room_id)%></td>
               <td><%= reser.room.introduction%></td>
               <td><%= reser.total_price%></td>          
               <td><%= reser.start_day %></td>
