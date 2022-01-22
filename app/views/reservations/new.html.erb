@@ -26,8 +26,6 @@
      
           <%= form_with model:@reservation,method: :post ,local: true do |reservar| %>
           <p><%= reservar.submit "登録完了",class: "btn btn-primary"%></p>
-     
-          
               <%= reservar.hidden_field :start_day,value: @reservation.start_day %>
               <%= reservar.hidden_field :end_day,value: @reservation.end_day %>
               <%= reservar.hidden_field :customer,value: @reservation.customer %>
@@ -38,18 +36,15 @@
 
           <%= form_with model: @reservation, url:back_reservations_path, method: :get ,local: true do |reservar| %>
           <p><%= reservar.submit "詳細へ戻る",class: "btn btn-warning"%></p>
-         
-          
               <%= reservar.hidden_field :start_day,value: @reservation.start_day %>
               <%= reservar.hidden_field :end_day,value: @reservation.end_day %>
               <%= reservar.hidden_field :customer,value: @reservation.customer %>
               <%= reservar.hidden_field :total_days,value: @reservation.total_days %>
               <%= reservar.hidden_field :total_price,value: @reservation.total_price %>
-              <%= reservar.hidden_field :room_id,value: @reservation.room_id %>
-             
-      <% end %>
+              <%= reservar.hidden_field :room_id,value: @reservation.room_id %>      
+          <% end %>
     
       <p><%= link_to "ホームへ戻る", root_path,class: "btn btn-secondary"%></p>
       </div>
-      </div>
-      </div>
+    </div>
+  </div>

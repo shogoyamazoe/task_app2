@@ -10,12 +10,13 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.shokai.nil?
-      binding.pry
-      render 'index'
-    else @user.update(user_params)
+     
+    if @user.update(user_params)
       flash[:notice] = "「#{@user.username}さん」の情報を更新しました"
       redirect_to root_path 
+    else
+      flash.now[:alert] = "自己紹介文を入力してください"
+           render 'index'
     end
   end
 end

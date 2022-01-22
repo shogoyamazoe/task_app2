@@ -2,8 +2,6 @@ class Reservation < ApplicationRecord
     belongs_to :user
     belongs_to :room
 
-  
-
     def total_yoyaku
       total_days = (self.end_day - self.start_day).to_i 
      end

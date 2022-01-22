@@ -9,8 +9,4 @@ class Room < ApplicationRecord
     validates :address, presence: true
     validates :roomimg, presence: true
     
-    
-
-
-   
 end

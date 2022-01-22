@@ -18,36 +18,29 @@
             </td>
           </tr>
           <tr>
-  <td class="border-bottom" ><%= @room.roomname %></td><br>
-  <td class="border-bottom" ><%= @room.address %></td>
-  </tr>
-  <tr>
-    <td><%= @room.introduction %></td>
-  </tr>
-   
-  </tr>
-</table>
-</div>
-
-<div class="col-md-6">
-
-<p><%= "1日あたり  ¥#{@room.price} / 日" %></p><br>
-<%= form_with model: @reservation, url:new_reservation_path, method: :get ,local: true do |reserv| %>
-  <div class="form-group">
-  <%= reserv.label :start_day ,"開始日"  %><span class="badge badge-danger">必須</span><br>
-  <%= reserv.date_field :start_day , class: "form-control" %><br>
-  <%= reserv.label :end_day ,"終了日" %><span class="badge badge-danger">必須</span><br>
-  <%= reserv.date_field :end_day , class: "form-control"%><br>
-  <%= reserv.label :customer,"人数" %><span class="badge badge-danger">必須</span><br>
-  <%= reserv.number_field :customer, min: 1 , class: "form-control" %><br>
-  <%= reserv.hidden_field :room_id, value: @room.id %>
-  <%= reserv.hidden_field :user_id, value: current_user.id %>
-
-  <p><%= reserv.submit "予約を確認する" ,class: "btn btn-primary"%></p>
-
-  <%= link_to "ホームへ戻る", root_path ,class: "btn btn-secondary"%>
-  
-<% end %>
-</div>
-</div>
-</div>
+            <td class="border-bottom" ><%= @room.roomname %></td><br>
+            <td class="border-bottom" ><%= @room.address %></td>
+          </tr>
+          <tr>
+            <td><%= @room.introduction %></td>
+          </tr>  
+       </table>
+      </div>
+        <div class="col-md-6">
+          <p><%= "1日あたり  ¥#{@room.price} / 日" %></p><br>
+            <%= form_with model: @reservation, url:new_reservation_path, method: :get ,local: true do |reserv| %>
+              <div class="form-group">
+                <%= reserv.label :start_day ,"開始日"  %><span class="badge badge-danger">必須</span><br>
+                <%= reserv.date_field :start_day , class: "form-control" %><br>
+                <%= reserv.label :end_day ,"終了日" %><span class="badge badge-danger">必須</span><br>
+                <%= reserv.date_field :end_day , class: "form-control"%><br>
+                <%= reserv.label :customer,"人数" %><span class="badge badge-danger">必須</span><br>
+                <%= reserv.number_field :customer, min: 1 , class: "form-control" %><br>
+                <%= reserv.hidden_field :room_id, value: @room.id %>
+                <%= reserv.hidden_field :user_id, value: current_user.id %>
+              <p><%= reserv.submit "予約を確認する" ,class: "btn btn-primary"%></p>
+              <%= link_to "ホームへ戻る", root_path ,class: "btn btn-secondary"%>
+            <% end %>
+        </div>
+    </div>
+  </div>

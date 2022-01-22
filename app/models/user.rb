@@ -9,8 +9,6 @@ class User < ApplicationRecord
   has_many :reservations
  
   validates :username, presence: true
-
-
-    validates :email, presence: true
-    validates :shokai, presence: true, on: :update
+  validates :email, presence: true
+  validates :shokai, presence: true, on: :update
 end
