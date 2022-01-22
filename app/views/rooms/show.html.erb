@@ -1,17 +1,23 @@
 <h3>ルーム詳細</h3>
-<div class="container">
-  <div class="row">
-   <div class="col-md-6">
-<table>
-  <tr>
-  <td><% if @room.roomimg? %> 
-    <%= image_tag @room.roomimg.url %>
-  <% end %></td>
-  </tr>
-  <tr>
-  <td><img src=<%= @room.user.image %> class = "icon_image" ></td>
-  </tr>
-  <tr>
+  <div class="container">
+    <div class="row">
+     <div class="col-md-6">
+       <table>
+         <tr>
+           <td><% if @room.roomimg? %> 
+             <%= image_tag @room.roomimg.url %>
+           <% end %></td>
+         </tr>
+         <tr>
+           <td>
+             <% if @room.user.image? %>
+               <img src=<%= @room.user.image %> class = "icon_image" >
+               <% else %>
+                 <%= image_tag "/assets/default.png", class: "icon_image" %> 
+              <% end %>
+            </td>
+          </tr>
+          <tr>
   <td class="border-bottom" ><%= @room.roomname %></td><br>
   <td class="border-bottom" ><%= @room.address %></td>
   </tr>
@@ -39,7 +45,7 @@
 
   <p><%= reserv.submit "予約を確認する" ,class: "btn btn-primary"%></p>
 
-  <%= link_to "ホームへ戻る", root_path ,class: "btn btn-warning"%>
+  <%= link_to "ホームへ戻る", root_path ,class: "btn btn-secondary"%>
   
 <% end %>
 </div>

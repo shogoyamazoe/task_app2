@@ -34,8 +34,12 @@
         <%= current_user.username %>   
         
         <div class="dropdown dropleft"> 
-        <button id="btnOpenMenu" class="btn btn-primary dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <button id="btnOpenMenu" class="btn btn-link dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <% if current_user.image? %>
         <img src=<%= current_user.image %> class = "icon_image" >
+        <% else %>
+        <%= image_tag "/assets/default.png", class: "icon_image" %> 
+        <% end %>
         </button>
         <ul class="dropdown-menu " aria-labelledby="btnOpenMenu">
         <li >
@@ -93,7 +97,7 @@
   </div>
 <div class="mt-5 ">
   <footer>
-    <h5>poteoan</h5>
+    <h5>potepan</h5>
   </footer>
 </html>
 

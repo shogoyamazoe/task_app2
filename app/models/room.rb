@@ -9,8 +9,8 @@ class Room < ApplicationRecord
     validates :address, presence: true
     validates :roomimg, presence: true
     
-    validates :start_day, presence: true
-    validates :end_day, presence: true
-    validates :customer, presence: true
+    
+
+
    
 end

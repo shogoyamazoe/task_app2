@@ -19,6 +19,7 @@ module Myapp
     # the framework and any gems in your application.
     config.time_zone = 'Tokyo' #ここに追加しましょう
 
+    config.i18n.default_locale = :ja
     
   end
 end
