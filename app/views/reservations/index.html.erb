@@ -1,0 +1,40 @@
+<h3>予約ルーム一覧</h3>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-30 mx-auto">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ルーム画像</th>
+            <th scope="col">ルーム名</th>
+            <th scope="col">ルーム紹介</th>
+            <th scope="col">合計金額</th>
+            <th scope="col">開始日</th>
+            <th scope="col">終了日</th>
+            <th scope="col">予約確定日時</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reservations.each do |reser| %>  
+            <tr>
+            <td><%= link_to room_path(reser.room_id) do %>
+              <% if reser.room.roomimg? %> 
+              <%= image_tag reser.room.roomimg.url %>
+              <% end %>
+              <% end %></td>
+              <td><%= link_to reser.room.roomname,room_path(reser.room_id)%></td>
+              <td><%= reser.room.introduction%></td>
+              <td>¥<%= reser.total_price%></td>          
+              <td><%= reser.start_day %>日</td>
+              <td><%= reser.end_day %>日</td>
+              <td><%= reser.created_at.to_s(:datetime_jp) %></td>  
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to "ホームへ戻る", root_path ,class: "btn btn-secondary"%>
+    </div>
+  </div>
+</div>
+
+  

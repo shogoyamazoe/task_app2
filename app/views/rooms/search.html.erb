@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-auto mx-5">
+      <h3>ルーム検索</h3>
+        <h4>検索結果 : <%= @rooms.count %></h4>
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ルーム名</th>
+                <th scope="col">住所</th>
+                <th scope="col">料金</th>
+                <th scope="col">ルーム画像</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%  @rooms .each do |room| %>
+                <tr>
+                  <td scope="col"><%= link_to room.roomname,room_path(room)%></td>
+                  <td scope="col"><%= room.address%></td>
+                  <td scope="col">¥<%= room.price%></td>
+                  <td scope="col"><%= link_to room_path(room) do %>
+                    <% if room.roomimg? %> 
+                      <%= image_tag room.roomimg.url %>
+                    <% end %>
+                  <% end %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <p><%= link_to "ホームへ戻る", root_path ,class: "btn btn-secondary"%></p> 
+    </div>
+  </div>
+</div>

@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap";
+ footer {
+   text-align: center;
+
+ }
+ .icon_image {
+    width: 60px;
+    height: 60px;
+    //サイズ指定
+    border-radius: 30px;
+    //画像を丸くする
+    object-fit: cover;
+    //タテヨコ比を変えないままトリミング
+  }
+
+
+  

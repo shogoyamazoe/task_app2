@@ -1,0 +1,37 @@
+<h3>登録ルーム一覧</h3>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-30 mx-auto">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+              <th class="border-bottom" >ルーム名</th>
+              <th class="border-bottom" >ルーム紹介</th>
+              <th class="border-bottom" >料金</th>
+              <th class="border-bottom" >住所</th>
+              <th class="border-bottom" >ルーム登録日</th>
+              <th class="border-bottom" >ルーム画像</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <% @rooms.each do |room| %> 
+              <tr>
+                <td class="border-bottom"><%= link_to room.roomname,room_path(room)%></td>
+                <td class="border-bottom"><%= room.introduction %></td>
+                <td class="border-bottom">¥<%= room.price %></td>
+                <td class="border-bottom"><%= room.address %></td>    
+                <td class="border-bottom"><%= room.created_at.to_s(:datetime_jp)%></td> 
+                <td class="border-bottom"><%= link_to room_path(room) do %>
+                  <% if room.roomimg? %> 
+                    <%= image_tag room.roomimg.url %>
+                  <% end %>
+                <% end %></td>
+              </tr>    
+            <% end %>
+          </tbody>
+        </table>
+       <%= link_to "ホームへ戻る", root_path ,class: "btn btn-secondary"%>
+    </div>
+  </div>
+</div>

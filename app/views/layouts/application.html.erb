@@ -1,15 +1,110 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Myapp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <html>
+    <head>
+      <title>Myapp</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
 
-  <body>
-    <%= yield %>
+    </head>
+
+    <body>
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <%= link_to root_path do%>
+            <h1>pote_shere</h1> 
+          <% end %>
+          <div class = "mx-3">
+            <%= search_form_for @search, url: search_rooms_path do |f| %>
+              <%= f.search_field :address_cont,class:"form-control", placeholder:'エリア' %>
+            <% end %>
+          </div>
+      
+          <%= search_form_for @search, url: search_rooms_path do |f| %>
+            <%=f.search_field:roomname_or_address_or_price_cont,class:"form-control", placeholder: "キーワード"%>
+          <% end %>
+        
+          <% if user_signed_in? %>
+            <div class = "ml-auto">
+              <%= current_user.username %>   
+                <div class="dropdown dropleft"> 
+                  <button id="btnOpenMenu" class="btn btn-link dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <% if current_user.image? %>
+                      <img src=<%= current_user.image %> class = "icon_image" >
+                    <% else %>
+                      <%= image_tag "/assets/default.png", class: "icon_image" %> 
+                    <% end %>
+                  </button>
+                    <ul class="dropdown-menu " aria-labelledby="btnOpenMenu">
+                      <li >
+                        <a class="dropdown-item" href="#"><%= link_to "ルーム登録", new_room_path , class: "nav-link"%></a>
+                      </li>
+                      <li >
+                        <a class="dropdown-item" href="#"><%= link_to "登録ルーム一覧",  postuser_rooms_path , class: "nav-link"%></a>
+                      </li> 
+                      <li>
+                        <a class="dropdown-item" href="#"><%= link_to "予約ルーム一覧", reservations_path , class: "nav-link"%></a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#"><%= link_to '設定', user_path(current_user), class: "nav-link"%></a>
+                      </li>
+                      <li >
+                        <a class="dropdown-item" href="#"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete , class: "nav-link"%></a>
+                      </li>
+                    </ul>
+                </div>                   
+              <% else %>
+            <div class="ml-auto">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <%= link_to '新規登録', new_user_registration_path ,class: "btn btn-primary"%>
+            </li>
+              <div class="ml-1">
+                <li class="nav-item">
+                  <%= link_to 'ログイン', new_user_session_path ,class: "btn btn-secondary"%>
+                </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+<% end %>
+        
+        
+        </nav>
+          </header>
+            <% if flash[:notice] %>
+              <div class="alert alert-primary"  role="alert"><strong><%= notice %></strong></div>
+            <% end %>
+            <% if flash[:alert] %>
+              <div class="alert alert-danger"  role="alert"><strong><%= alert %></strong></div>
+            <% end %>
+        
+              <%= yield %>
+      
   </body>
+</div>
+  <div class="mt-5 ">
+    <footer>
+      <h5>potepan</h5>
+    </footer>
 </html>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<!-- popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<!-- bootstrap.js -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+
+
+
+

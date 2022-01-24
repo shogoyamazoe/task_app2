@@ -1,0 +1,22 @@
+<div class="con">
+  <div class="container">
+    <div class="row">
+    <div class = "ue">
+      <div class="col-6 mx-auto">
+       <h2>Potepan Shareでまだ体験したことのない旅をしよう</h2>
+         <div class="form-group">
+           <%= search_form_for @search, url: search_rooms_path do |f| %>
+             <%= f.search_field :address_cont,class:"form-control", placeholder:'エリア' %>
+           <% end %>
+         </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+
+
+
+
+
